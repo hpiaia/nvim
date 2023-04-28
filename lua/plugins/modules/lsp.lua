@@ -52,6 +52,20 @@ return {
 						},
 					})
 				end,
+
+        ["gopls"] = function(server_name)
+          require("lspconfig")[server_name].setup({
+            cmd = { "gopls", "serve" },
+            settings = {
+              gopls = {
+                analyses = {
+                  unusedparams = true,
+                },
+                staticcheck = true,
+              },
+            },
+          })
+        end,
 			})
 		end,
 	},

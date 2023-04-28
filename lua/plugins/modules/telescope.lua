@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
-		"nvim-telescope/telescope-fzf-native.nvim",
 	},
 	keys = {
 		{ "<leader><leader>", ":Telescope find_files<cr>", silent = true, desc = "Find Files" },
@@ -26,7 +25,4 @@ return {
 			})
 		end,
 	},
-	config = function()
-		require("telescope").load_extension("fzf")
-	end,
 }
