@@ -2,8 +2,8 @@ local map = vim.keymap.set
 
 map("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 map("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
-map("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-map("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+map("v", "J", ":m '>+1<cr>gv=gv", { noremap = true, silent = true })
+map("v", "K", ":m '<-2<cr>gv=gv", { noremap = true, silent = true })
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
