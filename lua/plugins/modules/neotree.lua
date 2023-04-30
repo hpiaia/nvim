@@ -11,11 +11,6 @@ return {
 	},
 	config = function()
 		require("neo-tree").setup({
-			close_if_last_window = false,
-			popup_border_style = "single",
-			enable_git_status = true,
-			enable_modified_markers = true,
-			enable_diagnostics = false,
 			default_component_configs = {
 				indent = {
 					with_markers = false,
@@ -23,7 +18,6 @@ return {
 				},
 				modified = {
 					symbol = " ",
-					highlight = "NeoTreeModified",
 				},
 				icon = {
 					folder_closed = "",
@@ -33,12 +27,12 @@ return {
 				},
 				git_status = {
 					symbols = {
-						-- Change type
+						-- change type
 						added = "",
 						deleted = "",
 						modified = "",
 						renamed = "",
-						-- Status type
+						-- status type
 						untracked = "",
 						ignored = "",
 						unstaged = "",
@@ -48,7 +42,6 @@ return {
 				},
 			},
 			window = {
-				position = "left",
 				width = 35,
 			},
 			filesystem = {

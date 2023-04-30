@@ -2,6 +2,7 @@ local map = vim.keymap.set
 
 map("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 map("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+
 map("v", "J", ":m '>+1<cr>gv=gv", { noremap = true, silent = true })
 map("v", "K", ":m '<-2<cr>gv=gv", { noremap = true, silent = true })
 

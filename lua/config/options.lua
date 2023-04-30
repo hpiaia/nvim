@@ -3,6 +3,7 @@ local options = {
 	backup = false, -- creates a backup file
 	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
 	fileencoding = "utf-8", -- the encoding written to a file
+	conceallevel = 1, -- so that `` is hidden
 	hlsearch = true, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns
 	mouse = "a", -- allow the mouse to be used in neovim

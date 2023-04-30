@@ -7,12 +7,10 @@ return {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
 					local opts = { buffer = ev.buf }
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-					vim.keymap.set("n", "cr", vim.lsp.buf.rename, opts)
-					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 				end,
 			})
 		end,
@@ -53,19 +51,11 @@ return {
 					})
 				end,
 
-        ["gopls"] = function(server_name)
-          require("lspconfig")[server_name].setup({
-            cmd = { "gopls", "serve" },
-            settings = {
-              gopls = {
-                analyses = {
-                  unusedparams = true,
-                },
-                staticcheck = true,
-              },
-            },
-          })
-        end,
+				["gopls"] = function(server_name)
+					require("lspconfig")[server_name].setup({
+						cmd = { "gopls", "serve" },
+					})
+				end,
 			})
 		end,
 	},
