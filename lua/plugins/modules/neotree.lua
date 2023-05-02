@@ -16,30 +16,6 @@ return {
 					with_markers = false,
 					with_expanders = true,
 				},
-				modified = {
-					symbol = " ",
-				},
-				icon = {
-					folder_closed = "",
-					folder_open = "",
-					folder_empty = "",
-					folder_empty_open = "",
-				},
-				git_status = {
-					symbols = {
-						-- change type
-						added = "",
-						deleted = "",
-						modified = "",
-						renamed = "",
-						-- status type
-						untracked = "",
-						ignored = "",
-						unstaged = "",
-						staged = "",
-						conflict = "",
-					},
-				},
 			},
 			window = {
 				width = 35,
