@@ -2,14 +2,6 @@ local function augroup(name)
 	return vim.api.nvim_create_augroup(name, { clear = true })
 end
 
--- format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = augroup("format_on_save"),
-	callback = function()
-		vim.lsp.buf.format()
-	end,
-})
-
 -- attach lsp keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup("attach_lsp_keymaps"),
@@ -24,7 +16,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- Highlight on yank
+-- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_on_yank"),
 	callback = function()
@@ -37,6 +29,24 @@ vim.api.nvim_create_autocmd("VimResized", {
 	group = augroup("resize_splits"),
 	callback = function()
 		vim.cmd("tabdo wincmd =")
+	end,
+})
+
+-- close some filetypes with <q>
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup("close_with_q"),
+	pattern = {
+		"help",
+		"lspinfo",
+		"man",
+		"qf",
+		"spectre_panel",
+		"startuptime",
+		"checkhealth",
+	},
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
 	end,
 })
 
