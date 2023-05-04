@@ -10,7 +10,6 @@ return {
 				telescope = true,
 				which_key = true,
 				mini = true,
-				neotest = true,
 				lsp_trouble = true,
 			},
 		})
