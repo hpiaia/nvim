@@ -35,8 +35,6 @@ map("n", "<leader>ww", "<C-W>p", { desc = "other window" })
 map("n", "<leader>wd", "<C-W>c", { desc = "delete window" })
 map("n", "<leader>w-", "<C-W>s", { desc = "split window below" })
 map("n", "<leader>w|", "<C-W>v", { desc = "split window right" })
-map("n", "<leader>-", "<C-W>s", { desc = "split window below" })
-map("n", "<leader>|", "<C-W>v", { desc = "split window right" })
 
 -- search and replace
 map("n", "<leader>sr", ":%s//gcI<left><left><left><left>", { desc = "search and replace" })
