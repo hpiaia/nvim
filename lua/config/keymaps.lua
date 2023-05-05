@@ -7,17 +7,17 @@ map("v", "J", ":m '>+1<cr>gv=gv", { noremap = true, silent = true })
 map("v", "K", ":m '<-2<cr>gv=gv", { noremap = true, silent = true })
 
 -- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+map("n", "<C-h>", "<C-w>h", { desc = "go to left window" })
+map("n", "<C-j>", "<C-w>j", { desc = "go to lower window" })
+map("n", "<C-k>", "<C-w>k", { desc = "go to upper window" })
+map("n", "<C-l>", "<C-w>l", { desc = "go to right window" })
 
 -- Remap for dealing with visual line wraps
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- Clear search with <esc>
-map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "escape and clear hlsearch" })
 
 -- better indenting
 map("v", "<", "<gv")
@@ -28,18 +28,18 @@ map("v", "p", '"_dp')
 map("v", "P", '"_dP')
 
 -- terminal
-map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
+map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "enter normal mode" })
 
 -- windows
-map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
-map("n", "<leader>w-", "<C-W>s", { desc = "Split window below" })
-map("n", "<leader>w|", "<C-W>v", { desc = "Split window right" })
-map("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
-map("n", "<leader>|", "<C-W>v", { desc = "Split window right" })
+map("n", "<leader>ww", "<C-W>p", { desc = "other window" })
+map("n", "<leader>wd", "<C-W>c", { desc = "delete window" })
+map("n", "<leader>w-", "<C-W>s", { desc = "split window below" })
+map("n", "<leader>w|", "<C-W>v", { desc = "split window right" })
+map("n", "<leader>-", "<C-W>s", { desc = "split window below" })
+map("n", "<leader>|", "<C-W>v", { desc = "split window right" })
 
 -- close buffer
-map("n", "<leader>bd", "<cmd>bd<cr><esc>", { desc = "Buffer Delete" })
+map("n", "<leader>bd", "<cmd>bd<cr><esc>", { desc = "buffer delete" })
 
 -- save file
-map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "save file" })

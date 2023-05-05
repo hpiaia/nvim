@@ -6,19 +6,19 @@ return {
 		vim.keymap.set("n", "<leader>S", function()
 			spectre.open_visual()
 		end, {
-			desc = "Open Spectre",
+			desc = "open spectre",
 		})
 
 		vim.keymap.set("n", "<leader>sw", function()
 			spectre.open_visual({ select_word = true })
 		end, {
-			desc = "Search Current Word",
+			desc = "search current word",
 		})
 
 		vim.keymap.set("n", "<leader>sp", function()
 			spectre.open_file_search({ select_word = true })
 		end, {
-			desc = "Search on Current File",
+			desc = "search on current file",
 		})
 	end,
 }
