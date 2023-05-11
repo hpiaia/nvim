@@ -4,10 +4,6 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
-	keys = {
-		{ "<leader><leader>", "<cmd>Telescope find_files<cr>", silent = true, desc = "find files" },
-		{ "<leader>/", "<cmd>Telescope live_grep<cr>", silent = true, desc = "live grep" },
-	},
 	config = function()
 		require("telescope").setup({
 			defaults = {

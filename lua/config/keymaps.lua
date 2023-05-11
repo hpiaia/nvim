@@ -30,6 +30,16 @@ map("v", "P", '"_dP')
 -- terminal
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "enter normal mode" })
 
+-- neotree
+map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "file explorer" })
+
+-- find files
+map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "find files" })
+map("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "live grep" })
+
+-- git stuff
+map("n", "<leader>g", "<cmd>FloatermNew --title=LazyGit lazygit<cr>", { desc = "lazy git" })
+
 -- windows
 map("n", "<leader>ww", "<C-W>p", { desc = "other window" })
 map("n", "<leader>wd", "<C-W>c", { desc = "delete window" })
