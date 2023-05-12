@@ -3,7 +3,7 @@ return {
 	name = "catppuccin",
 	config = function()
 		require("catppuccin").setup({
-			flavour = "latte",
+			-- flavour = "latte",
 			show_end_of_buffer = true,
 			integrations = {
 				treesitter = true,
@@ -13,6 +13,6 @@ return {
 				lsp_trouble = true,
 			},
 		})
-		vim.cmd("colorscheme catppuccin-latte")
+		vim.cmd("colorscheme catppuccin")
 	end,
 }
