@@ -3,7 +3,7 @@ return {
 	name = "catppuccin",
 	config = function()
 		require("catppuccin").setup({
-			flavour = "latte",
+			-- flavour = "latte",
 			show_end_of_buffer = true,
 			integrations = {
 				treesitter = true,

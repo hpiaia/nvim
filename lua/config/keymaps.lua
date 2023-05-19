@@ -35,7 +35,12 @@ map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "file explorer" })
 
 -- find files
 map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "find files" })
-map("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "live grep" })
+map("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "find grep" })
+
+-- lsp telescope
+map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "find diagnostics" })
+map("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", { desc = "find references" })
+map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "find document symbols" })
 
 -- windows
 map("n", "<leader>ww", "<C-W>p", { desc = "other window" })
