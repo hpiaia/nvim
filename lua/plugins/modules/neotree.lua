@@ -5,7 +5,6 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"muniftanjim/nui.nvim",
 	},
-	event = "VeryLazy",
 	config = function()
 		require("neo-tree").setup({
 			default_component_configs = {

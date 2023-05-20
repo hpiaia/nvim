@@ -9,7 +9,6 @@ return {
 				null_ls.builtins.formatting.prismaFmt,
 				null_ls.builtins.formatting.rustywind,
 				null_ls.builtins.formatting.remark,
-				null_ls.builtins.code_actions.eslint,
 			},
 		})
 	end,

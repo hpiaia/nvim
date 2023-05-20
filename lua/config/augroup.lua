@@ -64,4 +64,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- format on save
-vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
+vim.api.nvim_create_autocmd("BufWritePre", {
+	group = augroup("format_on_save"),
+	callback = function(event)
+		vim.lsp.buf.format({ buffer = event.buf })
+	end,
+})
