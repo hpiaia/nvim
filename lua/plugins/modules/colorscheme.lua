@@ -1,17 +1,7 @@
 return {
-	"catppuccin/nvim",
-	name = "catppuccin",
+	"rose-pine/neovim",
+	name = "rose-pine",
 	config = function()
-		require("catppuccin").setup({
-			show_end_of_buffer = true,
-			integrations = {
-				treesitter = true,
-				telescope = true,
-				which_key = true,
-				mini = true,
-				lsp_trouble = true,
-			},
-		})
-		vim.cmd("colorscheme catppuccin-macchiato")
+		vim.cmd("colorscheme rose-pine")
 	end,
 }
