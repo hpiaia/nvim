@@ -13,9 +13,6 @@ return {
 					with_expanders = true,
 				},
 			},
-			window = {
-				width = 35,
-			},
 			filesystem = {
 				use_libuv_file_watcher = true,
 				filtered_items = {
@@ -23,6 +20,9 @@ return {
 					hide_by_name = { "node_modules" },
 					never_show = { ".DS_Store", "thumbs.db" },
 				},
+			},
+			window = {
+				width = 35,
 			},
 		})
 	end,
