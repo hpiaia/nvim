@@ -1,22 +1,22 @@
 local map = vim.keymap.set
 
-map("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
-map("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+map("n", "<C-d>", "<C-d>zz", { silent = true })
+map("n", "<C-u>", "<C-u>zz", { silent = true })
 
-map("v", "J", ":m '>+1<cr>gv=gv", { noremap = true, silent = true })
-map("v", "K", ":m '<-2<cr>gv=gv", { noremap = true, silent = true })
+map("v", "J", ":m '>+1<cr>gv=gv", { silent = true })
+map("v", "K", ":m '<-2<cr>gv=gv", { silent = true })
 
--- Move to window using the <ctrl> hjkl keys
+-- move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "go to left window" })
 map("n", "<C-j>", "<C-w>j", { desc = "go to lower window" })
 map("n", "<C-k>", "<C-w>k", { desc = "go to upper window" })
 map("n", "<C-l>", "<C-w>l", { desc = "go to right window" })
 
--- Remap for dealing with visual line wraps
+-- remap for dealing with visual line wraps
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- Clear search with <esc>
+-- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "escape and clear hlsearch" })
 
 -- better indenting

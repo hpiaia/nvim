@@ -11,7 +11,6 @@ return {
 				selection_caret = "  ",
 				entry_prefix = "  ",
 				selection_strategy = "reset",
-				file_ignore_patterns = { "node_modules" },
 			},
 			extensions = {
 				fzf = {
