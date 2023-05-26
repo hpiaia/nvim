@@ -42,6 +42,9 @@ map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "find diagnost
 map("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", { desc = "find references" })
 map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "find document symbols" })
 
+-- testing
+map("n", "<leader>tr", "<cmd>lua require('neotest').run.run()<cr>", { desc = "test nearest" })
+map("n", "<leader>tt", "<cmd>lua require('neotest').run.run(vim.fn.expand('c'))<cr>", { desc = "test file" })
 -- windows
 map("n", "<leader>ww", "<C-W>p", { desc = "other window" })
 map("n", "<leader>wd", "<C-W>c", { desc = "delete window" })
