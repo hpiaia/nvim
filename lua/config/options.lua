@@ -1,41 +1,8 @@
 local opt = vim.opt
 
-opt.autowrite = true -- enable auto write
 opt.clipboard = "unnamedplus" -- sync with system clipboard
-opt.conceallevel = 3 -- hide markup elements
-opt.confirm = true -- confirm to save changes before exiting modified buffer
-opt.cursorline = true -- enable highlighting of the current line
-opt.expandtab = true -- use spaces instead of tabs
-opt.ignorecase = true -- ignore case
-opt.inccommand = "nosplit" -- preview incremental substitute
-opt.laststatus = 0 -- always display the status line
-opt.list = false -- hide some invisible characters
-opt.mouse = "a" -- enable mouse mode
-opt.number = true -- print line number
-opt.pumblend = 10 -- popup blend
-opt.pumheight = 10 -- maximum number of entries in a popup
-opt.relativenumber = true -- relative line numbers
-opt.scrolloff = 4 -- lines of context
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" } -- save only the specified options
-opt.shiftround = true -- round indent
 opt.shiftwidth = 2 -- size of an indent
-opt.showmode = false -- don't show mode since we have a statusline
-opt.sidescrolloff = 8 -- columns of context
-opt.signcolumn = "yes" -- always show the signcolumn, otherwise it would shift the text each time
-opt.smartcase = true -- don't ignore case with capitals
-opt.smartindent = true -- insert indents automatically
-opt.splitbelow = true -- put new windows below current
-opt.splitright = true -- put new windows right of current
 opt.tabstop = 2 -- number of spaces tabs count for
-opt.termguicolors = true -- true color support
-opt.timeoutlen = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
-opt.undofile = true -- enable persistent undo
-opt.undolevels = 10000 -- maximum number of changes that can be undone
-opt.updatetime = 200 -- trigger cursorhold
-opt.swapfile = false -- no swapfile
-opt.wildmode = "longest:full,full" -- command-line completion mode
-opt.wrap = false -- disable line wrap
-opt.splitkeep = "screen" -- keep window split
 
 -- fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

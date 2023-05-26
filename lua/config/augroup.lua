@@ -17,14 +17,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = augroup("highlight_on_yank"),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
-
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd("VimResized", {
 	group = augroup("resize_splits"),

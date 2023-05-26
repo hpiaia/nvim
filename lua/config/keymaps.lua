@@ -1,35 +1,11 @@
 local map = vim.keymap.set
 
-map("n", "<C-d>", "<C-d>zz", { silent = true })
-map("n", "<C-u>", "<C-u>zz", { silent = true })
-
-map("v", "J", ":m '>+1<cr>gv=gv", { silent = true })
-map("v", "K", ":m '<-2<cr>gv=gv", { silent = true })
-
--- move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "go to left window" })
-map("n", "<C-j>", "<C-w>j", { desc = "go to lower window" })
-map("n", "<C-k>", "<C-w>k", { desc = "go to upper window" })
-map("n", "<C-l>", "<C-w>l", { desc = "go to right window" })
-
--- remap for dealing with visual line wraps
-map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
-map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
-
 -- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "escape and clear hlsearch" })
 
 -- disable command history
 map("n", "q:", "<nop>", { desc = "disable command history" })
 map("n", "Q", "<nop>", { desc = "disable ex mode" })
-
--- better indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
-
--- paste over currently selected text without yanking it
-map("v", "p", '"_dp')
-map("v", "P", '"_dP')
 
 -- terminal
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "enter normal mode" })
