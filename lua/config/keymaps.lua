@@ -19,6 +19,10 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 -- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "escape and clear hlsearch" })
 
+-- disable command history
+map("n", "q:", "<nop>", { desc = "disable command history" })
+map("n", "Q", "<nop>", { desc = "disable ex mode" })
+
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
