@@ -6,9 +6,6 @@ return {
 			sources = {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.prettierd,
-				null_ls.builtins.formatting.prismaFmt,
-				null_ls.builtins.formatting.rustywind,
-				null_ls.builtins.formatting.remark,
 			},
 		})
 	end,
