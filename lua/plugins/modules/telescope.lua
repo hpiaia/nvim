@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
+		"nvim-telescope/telescope-fzy-native.nvim",
 	},
 	config = function()
 		require("telescope").setup({
@@ -12,14 +13,7 @@ return {
 				entry_prefix = "  ",
 				selection_strategy = "reset",
 			},
-			extensions = {
-				fzf = {
-					fuzzy = true,
-					override_generic_sorter = true,
-					override_file_sorter = true,
-					case_mode = "smart_case",
-				},
-			},
 		})
+		require("telescope").load_extension("fzy_native")
 	end,
 }
