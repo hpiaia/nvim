@@ -35,7 +35,7 @@ map("n", "<leader>sR", "<cmd>lua require('spectre').open_file_search()<cr>", { d
 map("n", "<leader>ss", "<cmd>lua require('spectre').open()<cr>", { desc = "open spectre" })
 
 -- close buffer
-map("n", "<leader>bd", "<cmd>bd<cr><esc>", { desc = "buffer delete" })
+map("n", "<leader>bd", "<cmd>lua require('mini.bufremove').wipeout()<cr>", { desc = "buffer delete" })
 
 -- save file
 map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "save file" })
