@@ -5,3 +5,6 @@ opt.expandtab = true -- use spaces instead of tabs
 opt.tabstop = 2 -- number of spaces tabs count for
 opt.softtabstop = 2 -- number of spaces tabs count for
 opt.shiftwidth = 2 -- size of an indent
+opt.number = false -- show line numbers
+opt.relativenumber = false -- show relative line numbers
+opt.signcolumn = "yes" -- always show sign column
