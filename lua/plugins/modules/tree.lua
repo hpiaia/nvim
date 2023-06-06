@@ -12,6 +12,11 @@ return {
 					with_markers = false,
 					with_expanders = true,
 				},
+				icon = {
+					folder_closed = "󰉋",
+					folder_open = "󰉋",
+					folder_empty = "󰉋",
+				},
 			},
 			filesystem = {
 				use_libuv_file_watcher = true,

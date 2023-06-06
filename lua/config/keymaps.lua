@@ -10,7 +10,7 @@ map("n", "Q", "<nop>", { desc = "disable ex mode" })
 -- terminal
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "enter normal mode" })
 
--- neotree
+-- tree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "file explorer" })
 
 -- find files
