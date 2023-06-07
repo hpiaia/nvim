@@ -44,9 +44,17 @@ return {
 					null_ls.builtins.formatting.gofmt,
 					null_ls.builtins.formatting.goimports,
 					null_ls.builtins.formatting.goimports_reviser,
-					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.diagnostics.eslint,
 				},
+			})
+		end,
+	},
+	{
+		"muniftanjim/prettier.nvim",
+		config = function()
+			local prettier = require("prettier")
+			prettier.setup({
+				bin = "prettierd",
 			})
 		end,
 	},
