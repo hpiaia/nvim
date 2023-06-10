@@ -17,32 +17,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- resize splits if window got resized
-vim.api.nvim_create_autocmd("VimResized", {
-	group = augroup("resize_splits"),
-	callback = function()
-		vim.cmd("tabdo wincmd =")
-	end,
-})
-
--- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
-	group = augroup("close_with_q"),
-	pattern = {
-		"help",
-		"lspinfo",
-		"man",
-		"qf",
-		"spectre_panel",
-		"startuptime",
-		"checkhealth",
-	},
-	callback = function(event)
-		vim.bo[event.buf].buflisted = false
-		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf })
-	end,
-})
-
 -- auto create parent directories when saving a file
 vim.api.nvim_create_autocmd("BufWritePre", {
 	group = augroup("auto_create_dir"),
