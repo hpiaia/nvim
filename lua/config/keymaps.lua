@@ -29,10 +29,10 @@ map("n", "<leader>w-", "<C-W>s", { desc = "split window below" })
 map("n", "<leader>w|", "<C-W>v", { desc = "split window right" })
 
 -- search and replace
-map("n", "<leader>sr", ":%s//gcI<left><left><left><left>", { desc = "search and replace" })
 map("v", "<leader>sr", ":s//gcI<left><left><left><left>", { desc = "search and replace" })
-map("n", "<leader>sR", "<cmd>lua require('spectre').open_file_search()<cr>", { desc = "open spectre on file" })
-map("n", "<leader>ss", "<cmd>lua require('spectre').open()<cr>", { desc = "open spectre" })
+map("n", "<leader>sr", ":%s//gcI<left><left><left><left>", { desc = "search and replace" })
+map("n", "<leader>sp", "<cmd>lua require('spectre').open_file_search()<cr>", { desc = "open spectre on file" })
+map("n", "<leader>sP", "<cmd>lua require('spectre').open()<cr>", { desc = "open spectre" })
 
 -- close buffer
 map("n", "<leader>bd", "<cmd>lua require('mini.bufremove').wipeout()<cr>", { desc = "buffer delete" })
