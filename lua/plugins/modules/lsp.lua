@@ -46,7 +46,6 @@ return {
                     null_ls.builtins.formatting.goimports_reviser,
                     null_ls.builtins.formatting.rustywind,
                     null_ls.builtins.formatting.prettierd,
-                    null_ls.builtins.formatting.pint,
                 },
             })
         end,
