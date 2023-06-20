@@ -9,14 +9,6 @@ require("lazy").setup("plugins.modules", {
         missing = true,
         colorscheme = { "catppuccin" },
     },
-    checker = {
-        enabled = true,
-        notify = false,
-    },
-    change_detection = {
-        enabled = true,
-        notify = false,
-    },
     performance = {
         rtp = {
             disabled_plugins = {
