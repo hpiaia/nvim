@@ -12,15 +12,5 @@ return {
         require("mini.surround").setup({})
         require("mini.comment").setup({})
         require("mini.pairs").setup({})
-        local starter = require("mini.starter")
-        starter.setup({
-            items = {
-                starter.sections.recent_files(5, true),
-            },
-            content_hooks = {
-                starter.gen_hook.adding_bullet(),
-                starter.gen_hook.aligning("center", "center"),
-            },
-        })
     end,
 }

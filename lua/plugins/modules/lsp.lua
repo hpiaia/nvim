@@ -6,7 +6,7 @@ return {
         config = function()
             require("mason").setup({})
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "tsserver", "gopls" },
+                ensure_installed = { "lua_ls", "tsserver" },
                 automatic_installation = true,
                 handlers = {
                     function(server_name)
@@ -41,11 +41,6 @@ return {
                 temp_dir = "/tmp",
                 sources = {
                     null_ls.builtins.formatting.stylua,
-                    null_ls.builtins.formatting.gofmt,
-                    null_ls.builtins.formatting.goimports,
-                    null_ls.builtins.formatting.goimports_reviser,
-                    null_ls.builtins.formatting.rustywind,
-                    null_ls.builtins.formatting.prettierd,
                 },
             })
         end,
