@@ -1,8 +1,11 @@
 return {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "ellisonleao/gruvbox.nvim",
+    name = "gruvbox",
     config = function()
-        require("rose-pine").setup({})
-        vim.cmd("colorscheme rose-pine")
+        require("gruvbox").setup({
+            transparent_mode = true,
+        })
+        vim.o.background = "dark"
+        vim.cmd("colorscheme gruvbox")
     end,
 }
