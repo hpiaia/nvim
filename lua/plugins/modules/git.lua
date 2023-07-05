@@ -6,4 +6,10 @@ return {
             require("gitsigns").setup({})
         end,
     },
+    {
+        "NeogitOrg/neogit",
+        config = function()
+            require("neogit").setup({})
+        end,
+    },
 }
