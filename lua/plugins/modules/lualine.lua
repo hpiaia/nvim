@@ -3,6 +3,7 @@ return {
     config = function()
         require("lualine").setup({
             extensions = { "neo-tree", "lazy", "fugitive" },
+            options = { theme = "catppuccin" },
         })
     end,
 }

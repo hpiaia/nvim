@@ -11,7 +11,9 @@ return {
                 types = { "italic" },
             },
             integrations = {
+                mason = true,
                 mini = true,
+                neotree = true,
             },
         })
         vim.cmd.colorscheme("catppuccin")
