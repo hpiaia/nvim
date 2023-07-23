@@ -41,8 +41,8 @@ map("n", "<leader>bd", "<cmd>lua require('mini.bufremove').wipeout()<cr>", { des
 map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "save file" })
 
 -- lsp
-map("n", "gd", "<cmd>Lspsaga goto_definition<cr>", { desc = "go to definition" })
-map("n", "gi", "<cmd>Lspsaga finder imp<cr>", { desc = "go to implementation" })
+map("n", "gd", vim.lsp.buf.definition, { desc = "go to definition" })
+map("n", "gi", vim.lsp.buf.implementation, { desc = "go to implementation" })
 map("n", "K", "<cmd>Lspsaga hover_doc<cr>", { desc = "show information" })
 map("n", "<leader>r", "<cmd>Lspsaga rename<cr>", { desc = "rename" })
 map("n", "<leader>a", "<cmd>Lspsaga code_action<cr>", { desc = "actions" })
