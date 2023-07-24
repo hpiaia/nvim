@@ -64,6 +64,7 @@ return {
                 mapping = {
                     ["<c-p>"] = cmp.mapping.select_prev_item(),
                     ["<c-n>"] = cmp.mapping.select_next_item(),
+                    ["<c-space>"] = cmp.mapping.complete(),
                     ["<cr>"] = cmp.mapping.confirm({ select = true }),
                 },
                 sources = {
@@ -79,6 +80,7 @@ return {
         config = function()
             local null_ls = require("null-ls")
             null_ls.setup({
+                temp_dir = "/tmp",
                 sources = {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettierd,
