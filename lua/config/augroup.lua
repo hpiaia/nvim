@@ -18,6 +18,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = augroup("format_on_save"),
     callback = function(event)
-        vim.lsp.buf.format({ buffer = event.buf })
+        vim.lsp.buf.format({
+            buffer = event.buf,
+            filter = function(client)
+                local ignore = { "tsserver" }
+                return not vim.tbl_contains(ignore, client.name)
+            end,
+        })
     end,
 })
