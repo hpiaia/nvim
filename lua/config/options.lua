@@ -10,3 +10,4 @@ opt.tabstop = 2 -- number of spaces tabs count for
 opt.softtabstop = 2 -- number of spaces tabs count for
 opt.shiftwidth = 2 -- number of spaces to use for autoindenting
 opt.expandtab = true -- use spaces instead of tabs
+opt.swapfile = false -- disable swap files
