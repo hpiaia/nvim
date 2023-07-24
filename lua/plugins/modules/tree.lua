@@ -23,6 +23,14 @@ return {
                     hide_by_name = { "node_modules" },
                     never_show = { ".DS_Store", "thumbs.db" },
                 },
+                components = {
+                    name = function(_, node)
+                        return {
+                            text = " " .. node.name,
+                            highlight = "NeoTreeFileName",
+                        }
+                    end,
+                },
             },
             window = {
                 width = 35,
