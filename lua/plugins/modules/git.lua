@@ -1,11 +1,5 @@
 return {
-    {
-        "NeogitOrg/neogit",
-        config = function()
-            local neogit = require("neogit")
-            neogit.setup({})
-        end,
-    },
+    { "tpope/vim-fugitive" },
     {
         "lewis6991/gitsigns.nvim",
         config = function()
