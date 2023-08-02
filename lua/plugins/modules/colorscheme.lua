@@ -13,6 +13,7 @@ return {
                 mason = true,
                 mini = true,
                 neotree = true,
+                neogit = true,
             },
         })
         vim.cmd.colorscheme("catppuccin")
