@@ -4,7 +4,8 @@ return {
         "nvim-telescope/telescope-fzy-native.nvim",
     },
     config = function()
-        require("telescope").setup({
+        local telescope = require("telescope")
+        telescope.setup({
             defaults = {
                 prompt_prefix = "   ",
                 selection_caret = " ",
@@ -12,6 +13,6 @@ return {
                 selection_strategy = "reset",
             },
         })
-        require("telescope").load_extension("fzy_native")
+        telescope.load_extension("fzy_native")
     end,
 }
