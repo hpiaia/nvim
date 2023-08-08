@@ -3,7 +3,6 @@ return {
     name = "catppuccin",
     config = function()
         require("catppuccin").setup({
-            flavour = "latte",
             transparent_background = true,
             term_colors = true,
             styles = {
