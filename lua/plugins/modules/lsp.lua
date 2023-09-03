@@ -1,16 +1,17 @@
 return {
     {
+        "neovim/nvim-lspconfig",
+    },
+    {
         "williamboman/mason.nvim",
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
             "jayp0521/mason-null-ls.nvim",
+            "hrsh7th/cmp-nvim-lsp",
+            "b0o/schemastore.nvim",
         },
         config = function()
-            local mason = require("mason")
-            local mason_lspconfig = require("mason-lspconfig")
-            local mason_null_ls = require("mason-null-ls")
-
-            mason.setup({
+            require("mason").setup({
                 ui = {
                     icons = {
                         package_installed = "✓",
@@ -20,105 +21,88 @@ return {
                 },
             })
 
-            mason_lspconfig.setup({
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+            require("mason-lspconfig").setup({
                 ensure_installed = {
                     "tsserver",
                     "html",
                     "cssls",
+                    "jsonls",
                     "tailwindcss",
                     "svelte",
                     "lua_ls",
-                    "graphql",
                     "emmet_ls",
                     "prismals",
                     "rust_analyzer",
                 },
+                handlers = {
+                    function(server_name)
+                        require("lspconfig")[server_name].setup({
+                            capabilities = capabilities,
+                        })
+                    end,
+
+                    -- override lua_ls server setup
+                    ["lua_ls"] = function()
+                        require("lspconfig").lua_ls.setup({
+                            capabilities = capabilities,
+                            settings = {
+                                Lua = {
+                                    diagnostics = {
+                                        globals = { "vim" },
+                                    },
+                                },
+                            },
+                        })
+                    end,
+
+                    -- override tsserver server setup
+                    ["tsserver"] = function()
+                        require("lspconfig").tsserver.setup({
+                            capabilities = capabilities,
+                            init_options = {
+                                preferences = {
+                                    disableSuggestions = true,
+                                },
+                            },
+                        })
+                    end,
+
+                    -- override cssls server setup
+                    ["cssls"] = function()
+                        require("lspconfig").cssls.setup({
+                            capabilities = capabilities,
+                            settings = {
+                                css = {
+                                    validate = false,
+                                },
+                            },
+                        })
+                    end,
+
+                    -- override jsonls server setup
+                    ["jsonls"] = function()
+                        require("lspconfig").jsonls.setup({
+                            capabilities = capabilities,
+                            settings = {
+                                json = {
+                                    schemas = require("schemastore").json.schemas(),
+                                },
+                            },
+                        })
+                    end,
+                },
                 automatic_installation = true,
             })
 
-            mason_null_ls.setup({
+            require("mason-null-ls").setup({
                 ensure_installed = {
                     "stylua",
                     "prettierd",
                     "eslint_d",
                 },
                 automatic_installation = true,
-            })
-        end,
-    },
-    {
-        "neovim/nvim-lspconfig",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            { "antosha417/nvim-lsp-file-operations", config = true },
-        },
-        config = function()
-            local lspconfig = require("lspconfig")
-            local cmp_nvim_lsp = require("cmp_nvim_lsp")
-            local capabilities = cmp_nvim_lsp.default_capabilities()
-
-            local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-            for type, icon in pairs(signs) do
-                local hl = "DiagnosticSign" .. type
-                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-            end
-
-            lspconfig["html"].setup({
-                capabilities = capabilities,
-            })
-
-            lspconfig["tsserver"].setup({
-                capabilities = capabilities,
-                init_options = {
-                    preferences = {
-                        disableSuggestions = true,
-                    },
-                },
-            })
-
-            lspconfig["cssls"].setup({
-                capabilities = capabilities,
-                settings = {
-                    css = {
-                        validate = false,
-                    },
-                },
-            })
-
-            lspconfig["rust_analyzer"].setup({
-                capabilities = capabilities,
-            })
-
-            lspconfig["tailwindcss"].setup({
-                capabilities = capabilities,
-            })
-
-            lspconfig["svelte"].setup({
-                capabilities = capabilities,
-            })
-
-            lspconfig["prismals"].setup({
-                capabilities = capabilities,
-            })
-
-            lspconfig["graphql"].setup({
-                capabilities = capabilities,
-            })
-
-            lspconfig["emmet_ls"].setup({
-                capabilities = capabilities,
-            })
-
-            lspconfig["lua_ls"].setup({
-                capabilities = capabilities,
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { "vim" },
-                        },
-                    },
-                },
             })
         end,
     },
@@ -135,16 +119,11 @@ return {
         },
         config = function()
             local cmp = require("cmp")
-            local luasnip = require("luasnip")
-            local lspkind = require("lspkind")
 
             cmp.setup({
-                completion = {
-                    completeopt = "menu,menuone,preview,noselect",
-                },
                 snippet = {
                     expand = function(args)
-                        luasnip.lsp_expand(args.body)
+                        require("luasnip").lsp_expand(args.body)
                     end,
                 },
                 mapping = cmp.mapping.preset.insert({
@@ -160,7 +139,7 @@ return {
                     { name = "path" },
                 }),
                 formatting = {
-                    format = lspkind.cmp_format({
+                    format = require("lspkind").cmp_format({
                         maxwidth = 50,
                         ellipsis_char = "...",
                     }),
@@ -182,7 +161,8 @@ return {
                     }),
                     null_ls.builtins.diagnostics.eslint_d.with({
                         condition = function(utils)
-                            return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
+                            -- only enable if root has .eslintrc.js or .eslintrc.cjs
+                            return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" })
                         end,
                     }),
                 },
