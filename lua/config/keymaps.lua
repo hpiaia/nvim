@@ -6,7 +6,7 @@ map("v", "<", "")
 
 -- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "escape and clear hlsearch" })
-map({ "i", "n" }, "<leader>h", "<cmd>noh<cr><esc>", { desc = "clear highlights" })
+map("n", "<leader>h", "<cmd>noh<cr><esc>", { desc = "clear highlights" })
 
 -- disable command history
 map("n", "q:", "<nop>", { desc = "disable command history" })
