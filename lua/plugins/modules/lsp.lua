@@ -1,12 +1,27 @@
 return {
-    { "williamboman/mason.nvim" },
-    { "neovim/nvim-lspconfig" },
+    {
+        "williamboman/mason.nvim",
+    },
+    {
+        "neovim/nvim-lspconfig",
+    },
     {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason").setup({})
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "tsserver" },
+                ensure_installed = {
+                    "tsserver",
+                    "html",
+                    "cssls",
+                    "tailwindcss",
+                    "svelte",
+                    "lua_ls",
+                    "graphql",
+                    "emmet_ls",
+                    "prismals",
+                    "jsonls",
+                },
                 automatic_installation = true,
                 handlers = {
                     function(server_name)
@@ -70,6 +85,44 @@ return {
                     { name = "path" },
                     { name = "luasnip" },
                 },
+            })
+        end,
+    },
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+            local null_ls = require("null-ls")
+            local augroup = vim.api.nvim_create_augroup("format_on_save", {})
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.stylua,
+                    null_ls.builtins.formatting.prettierd.with({
+                        extra_filetypes = { "svelte" },
+                    }),
+                    null_ls.builtins.diagnostics.eslint_d.with({
+                        condition = function(utils)
+                            return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
+                        end,
+                    }),
+                },
+                on_attach = function(current_client, bufnr)
+                    if current_client.supports_method("textDocument/formatting") then
+                        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+                        vim.api.nvim_create_autocmd("BufWritePre", {
+                            group = augroup,
+                            buffer = bufnr,
+                            callback = function()
+                                vim.lsp.buf.format({
+                                    filter = function(client)
+                                        --  only use null-ls for formatting instead of lsp server
+                                        return client.name == "null-ls"
+                                    end,
+                                    bufnr = bufnr,
+                                })
+                            end,
+                        })
+                    end
+                end,
             })
         end,
     },

@@ -2,6 +2,7 @@ local map = vim.keymap.set
 
 -- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "escape and clear hlsearch" })
+map({ "i", "n" }, "<leader>h", "<cmd>noh<cr><esc>", { desc = "clear highlights" })
 
 -- disable command history
 map("n", "q:", "<nop>", { desc = "disable command history" })
@@ -22,12 +23,6 @@ map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "find diagnost
 map("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", { desc = "find references" })
 map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "find document symbols" })
 
--- windows
-map("n", "<leader>ww", "<C-W>p", { desc = "other window" })
-map("n", "<leader>wd", "<C-W>c", { desc = "delete window" })
-map("n", "<leader>w-", "<C-W>s", { desc = "split window below" })
-map("n", "<leader>w|", "<C-W>v", { desc = "split window right" })
-
 -- search and replace
 map("v", "<leader>sr", ":s//gcI<left><left><left><left>", { desc = "search and replace" })
 map("n", "<leader>sr", ":%s//gcI<left><left><left><left>", { desc = "search and replace" })
@@ -37,8 +32,9 @@ map("n", "<leader>sP", "<cmd>lua require('spectre').open()<cr>", { desc = "open 
 -- close buffer
 map("n", "<leader>bd", "<cmd>lua require('mini.bufremove').wipeout()<cr>", { desc = "buffer delete" })
 
--- save file
-map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "save file" })
+-- windows and files
+map("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "save file" })
+map("n", "<leader>q", "<cmd>w<cr><esc>", { desc = "save file" })
 
 -- lsp
 map("n", "gd", vim.lsp.buf.definition, { desc = "go to definition" })
