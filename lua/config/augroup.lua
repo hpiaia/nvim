@@ -9,3 +9,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
     end,
 })
+
+-- svelte hack to restart lsp on file save
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        vim.api.nvim_create_autocmd("BufWritePost", {
+            pattern = { "*.js", "*.ts" },
+            callback = function()
+                if client.name == "svelte" then
+                    vim.cmd("LspRestart")
+                end
+            end,
+        })
+    end,
+})
