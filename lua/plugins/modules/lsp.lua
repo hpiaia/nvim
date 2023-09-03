@@ -31,8 +31,9 @@ return {
                         require("lspconfig").lua_ls.setup({
                             settings = {
                                 Lua = {
-                                    format = { enable = false },
-                                    diagnostics = { globals = { "vim" } },
+                                    diagnostics = {
+                                        globals = { "vim" },
+                                    },
                                 },
                             },
                         })
@@ -40,7 +41,9 @@ return {
                     ["tsserver"] = function()
                         require("lspconfig").tsserver.setup({
                             init_options = {
-                                preferences = { disableSuggestions = true },
+                                preferences = {
+                                    disableSuggestions = true,
+                                },
                             },
                         })
                     end,

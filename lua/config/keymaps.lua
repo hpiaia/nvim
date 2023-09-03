@@ -1,5 +1,9 @@
 local map = vim.keymap.set
 
+-- remove defaults
+map("v", ">", "")
+map("v", "<", "")
+
 -- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "escape and clear hlsearch" })
 map({ "i", "n" }, "<leader>h", "<cmd>noh<cr><esc>", { desc = "clear highlights" })
@@ -34,7 +38,7 @@ map("n", "<leader>bd", "<cmd>lua require('mini.bufremove').wipeout()<cr>", { des
 
 -- windows and files
 map("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "save file" })
-map("n", "<leader>q", "<cmd>w<cr><esc>", { desc = "save file" })
+map("n", "<leader>q", "<cmd>q<cr><esc>", { desc = "quit" })
 
 -- lsp
 map("n", "gd", vim.lsp.buf.definition, { desc = "go to definition" })
