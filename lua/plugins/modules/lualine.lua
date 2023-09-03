@@ -3,7 +3,11 @@ return {
         "nvim-lualine/lualine.nvim",
         config = function()
             require("lualine").setup({
-                extensions = { "neo-tree", "lazy", "fugitive" },
+                extensions = {
+                    "neo-tree",
+                    "lazy",
+                    "fugitive",
+                },
                 options = {
                     globalstatus = true,
                     theme = "catppuccin",
