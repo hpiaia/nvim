@@ -11,15 +11,7 @@ return {
             "b0o/schemastore.nvim",
         },
         config = function()
-            require("mason").setup({
-                ui = {
-                    icons = {
-                        package_installed = "✓",
-                        package_pending = "➜",
-                        package_uninstalled = "✗",
-                    },
-                },
-            })
+            require("mason").setup({})
 
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
