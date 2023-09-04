@@ -93,7 +93,6 @@ return {
                         })
                     end,
                 },
-                automatic_installation = true,
             })
 
             require("mason-null-ls").setup({
@@ -102,19 +101,16 @@ return {
                     "prettierd",
                     "eslint_d",
                 },
-                automatic_installation = true,
             })
         end,
     },
     {
         "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "l3mOn4d3/luasnip",
             "saadparwaiz1/cmp_luasnip",
-            "rafamadriz/friendly-snippets",
             "onsails/lspkind.nvim",
         },
         config = function()
@@ -154,14 +150,15 @@ return {
             local augroup = vim.api.nvim_create_augroup("format_on_save", {})
 
             null_ls.setup({
+                temp_dir = "/tmp",
                 sources = {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettierd.with({
                         extra_filetypes = { "svelte" },
                     }),
+                    null_ls.builtins.formatting.rustfmt,
                     null_ls.builtins.diagnostics.eslint_d.with({
                         condition = function(utils)
-                            -- only enable if root has .eslintrc.js or .eslintrc.cjs
                             return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" })
                         end,
                     }),
@@ -174,11 +171,11 @@ return {
                             buffer = bufnr,
                             callback = function()
                                 vim.lsp.buf.format({
+                                    bufnr = bufnr,
                                     filter = function(client)
                                         --  only use null-ls for formatting instead of lsp server
                                         return client.name == "null-ls"
                                     end,
-                                    bufnr = bufnr,
                                 })
                             end,
                         })
