@@ -18,7 +18,7 @@ map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "enter normal mode" })
 -- tree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "file explorer" })
 
--- find files
+-- find content
 map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "find files" })
 map("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "find grep" })
 
