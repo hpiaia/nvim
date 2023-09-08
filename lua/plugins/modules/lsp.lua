@@ -8,7 +8,6 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
-            "jayp0521/mason-null-ls.nvim",
             "hrsh7th/cmp-nvim-lsp",
             "b0o/schemastore.nvim",
         },
@@ -88,7 +87,14 @@ return {
                     end,
                 },
             })
-
+        end,
+    },
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        dependencies = {
+            "jayp0521/mason-null-ls.nvim",
+        },
+        config = function()
             require("mason-null-ls").setup({
                 ensure_installed = {
                     "stylua",
@@ -96,13 +102,8 @@ return {
                     "eslint-lsp",
                 },
             })
-        end,
-    },
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
+
             local null_ls = require("null-ls")
-            local augroup = vim.api.nvim_create_augroup("format_on_save", {})
 
             null_ls.setup({
                 temp_dir = "/tmp",
@@ -115,12 +116,8 @@ return {
                 },
                 on_attach = function(current_client, bufnr)
                     if current_client.supports_method("textDocument/formatting") then
-                        vim.api.nvim_clear_autocmds({
-                            group = augroup,
-                            buffer = bufnr,
-                        })
                         vim.api.nvim_create_autocmd("BufWritePre", {
-                            group = augroup,
+                            group = vim.api.nvim_create_augroup("format_on_save", { clear = true }),
                             buffer = bufnr,
                             callback = function()
                                 vim.lsp.buf.format({
