@@ -5,6 +5,7 @@ return {
     },
     config = function()
         local telescope = require("telescope")
+
         telescope.setup({
             defaults = {
                 prompt_prefix = "   ",
@@ -13,6 +14,7 @@ return {
                 selection_strategy = "reset",
             },
         })
+
         telescope.load_extension("fzy_native")
     end,
 }

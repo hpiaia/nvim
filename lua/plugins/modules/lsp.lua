@@ -13,7 +13,7 @@ return {
             "b0o/schemastore.nvim",
         },
         config = function()
-            require("mason").setup({})
+            require("mason").setup()
 
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -109,6 +109,7 @@ return {
                 sources = {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettierd,
+                    null_ls.builtins.formatting.prismaFmt,
                     null_ls.builtins.formatting.rustfmt,
                     null_ls.builtins.diagnostics.eslint,
                 },

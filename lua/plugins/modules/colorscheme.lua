@@ -9,11 +9,6 @@ return {
                 which_key = true,
                 overseer = true,
             },
-            custom_highlights = function(colors)
-                return {
-                    CursorLine = { bg = colors.none },
-                }
-            end,
         })
 
         vim.cmd.colorscheme("catppuccin")
