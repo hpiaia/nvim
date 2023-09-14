@@ -10,7 +10,6 @@ return {
                 },
                 options = {
                     globalstatus = true,
-                    theme = "catppuccin",
                     component_separators = { left = "", right = "" },
                     section_separators = { left = "", right = "" },
                 },
