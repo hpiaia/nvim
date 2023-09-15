@@ -12,6 +12,12 @@ return {
                 selection_caret = " ",
                 entry_prefix = "  ",
                 selection_strategy = "reset",
+                file_ignore_patterns = { ".git/", "^node_modules/" },
+            },
+            pickers = {
+                find_files = {
+                    hidden = true,
+                },
             },
         })
 
