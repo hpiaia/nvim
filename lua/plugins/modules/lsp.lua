@@ -98,13 +98,13 @@ return {
             require("mason-null-ls").setup({
                 ensure_installed = {
                     "stylua",
-                    "prettier",
-                    "eslint-lsp",
+                    "prettierd",
                 },
             })
 
             local null_ls = require("null-ls")
             local group = vim.api.nvim_create_augroup("format_on_save", { clear = false })
+
             local filter = function(client)
                 --  only use null-ls for formatting instead of lsp server
                 return client.name == "null-ls"
@@ -114,10 +114,9 @@ return {
                 temp_dir = "/tmp",
                 sources = {
                     null_ls.builtins.formatting.stylua,
-                    null_ls.builtins.formatting.prettier,
+                    null_ls.builtins.formatting.prettierd,
                     null_ls.builtins.formatting.prismaFmt,
                     null_ls.builtins.formatting.rustfmt,
-                    null_ls.builtins.diagnostics.eslint,
                 },
                 on_attach = function(current_client, bufnr)
                     if current_client.supports_method("textDocument/formatting") then
