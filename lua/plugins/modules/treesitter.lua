@@ -2,6 +2,8 @@ return {
     "nvim-treesitter/nvim-treesitter",
     config = function()
         require("nvim-treesitter.configs").setup({
+            enable = true,
+            auto_install = true,
             ensure_installed = {
                 "lua",
                 "vim",
@@ -26,13 +28,19 @@ return {
                 "markdown",
                 "markdown_inline",
             },
-            highlight = {
-                enable = true,
-            },
+            highlight = {},
             indent = {
                 enable = true,
             },
-            auto_install = true,
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = "<c-space>",
+                    node_incremental = "<c-space>",
+                    scope_incremental = "<c-s>",
+                    node_decremental = "<M-space>",
+                },
+            },
         })
     end,
 }

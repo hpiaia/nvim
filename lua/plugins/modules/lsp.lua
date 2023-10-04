@@ -143,9 +143,10 @@ return {
         dependencies = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
-            "l3mOn4d3/luasnip",
+            "l3mon4d3/luasnip",
             "saadparwaiz1/cmp_luasnip",
             "onsails/lspkind.nvim",
+            "rafamadriz/friendly-snippets",
         },
         config = function()
             local cmp = require("cmp")
@@ -175,6 +176,12 @@ return {
                     }),
                 },
             })
+        end,
+    },
+    {
+        "folke/neodev.nvim",
+        config = function()
+            require("neodev").setup()
         end,
     },
 }
