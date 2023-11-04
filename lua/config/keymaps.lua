@@ -46,3 +46,12 @@ map("n", "gi", vim.lsp.buf.implementation, { desc = "go to implementation" })
 map("n", "K", vim.lsp.buf.hover, { desc = "show information" })
 map("n", "<leader>r", vim.lsp.buf.rename, { desc = "rename" })
 map("n", "<leader>a", vim.lsp.buf.code_action, { desc = "actions" })
+
+-- dap
+map("n", "<leader>b", "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = "toggle breakpoint" })
+map("n", "<leader>dr", "<cmd>lua require('dap').repl.toggle()<cr>", { desc = "toggle repl" })
+map("n", "<leader>dc", "<cmd>lua require('dap').continue()<cr>", { desc = "continue" })
+map("n", "<leader>ds", "<cmd>lua require('dap').step_over()<cr>", { desc = "step over" })
+map("n", "<leader>di", "<cmd>lua require('dap').step_into()<cr>", { desc = "step into" })
+map("n", "<leader>do", "<cmd>lua require('dap').step_out()<cr>", { desc = "step out" })
+map("n", "<leader>dl", "<cmd>lua require('dap').run_last()<cr>", { desc = "run last" })
