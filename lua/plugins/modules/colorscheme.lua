@@ -1,12 +1,12 @@
 return {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "ellisonleao/gruvbox.nvim",
+    name = "gruvbox",
     config = function()
-        require("catppuccin").setup({
-            transparent_background = false,
-            show_end_of_buffer = true,
-            term_colors = true,
+        require("gruvbox").setup({
+            terminal_colors = true,
+            transparent_mode = true,
         })
-        vim.cmd.colorscheme("catppuccin")
+        vim.o.background = "dark"
+        vim.cmd.colorscheme("gruvbox")
     end,
 }
