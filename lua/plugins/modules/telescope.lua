@@ -12,7 +12,7 @@ return {
                 selection_caret = " ",
                 entry_prefix = "  ",
                 selection_strategy = "reset",
-                file_ignore_patterns = { ".git/", "^node_modules/", "^.yarn/" },
+                file_ignore_patterns = { ".git/", "node_modules/", ".yarn/" },
             },
             pickers = {
                 find_files = {

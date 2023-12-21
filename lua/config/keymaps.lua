@@ -6,7 +6,6 @@ map("v", "<", "")
 
 -- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "escape and clear hlsearch" })
-map("n", "<leader>h", "<cmd>noh<cr><esc>", { desc = "clear highlights" })
 
 -- disable command history
 map("n", "q:", "<nop>", { desc = "disable command history" })
@@ -27,14 +26,19 @@ map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "find diagnost
 map("n", "<leader>fr", "<cmd>Telescope lsp_references<cr>", { desc = "find references" })
 map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "find document symbols" })
 
+-- trouble
+map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { desc = "trouble toggle" })
+map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "trouble workspace diagnostics" })
+map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "trouble document diagnostics" })
+map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { desc = "trouble quickfix" })
+map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { desc = "trouble loclist" })
+map("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { desc = "trouble lsp references" })
+
 -- search and replace
 map("v", "<leader>sr", ":s//gcI<left><left><left><left>", { desc = "search and replace" })
 map("n", "<leader>sr", ":%s//gcI<left><left><left><left>", { desc = "search and replace" })
 map("n", "<leader>sp", "<cmd>lua require('spectre').open_file_search()<cr>", { desc = "open spectre on file" })
 map("n", "<leader>sP", "<cmd>lua require('spectre').open()<cr>", { desc = "open spectre" })
-
--- close buffer
-map("n", "<leader>bd", "<cmd>lua require('mini.bufremove').wipeout()<cr>", { desc = "buffer delete" })
 
 -- windows and files
 map("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "save file" })
