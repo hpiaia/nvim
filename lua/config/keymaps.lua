@@ -17,6 +17,16 @@ map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "enter normal mode" })
 -- tree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "file explorer" })
 
+-- tab bar
+local opts = { noremap = true, silent = true }
+map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", opts)
+map("n", "<A-.>", "<Cmd>BufferNext<CR>", opts)
+map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", opts)
+map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", opts)
+map("n", "<A-p>", "<Cmd>BufferPin<CR>", opts)
+map("n", "<A-c>", "<Cmd>BufferClose<CR>", opts)
+map("n", "<C-p>", "<Cmd>BufferPick<CR>", opts)
+
 -- find content
 map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "find files" })
 map("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "find grep" })

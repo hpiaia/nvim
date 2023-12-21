@@ -179,15 +179,13 @@ return {
                         "kind",
                         "menu",
                     },
-                    expandable_indicator = true
+                    expandable_indicator = true,
                 },
             })
         end,
     },
     {
         "folke/neodev.nvim",
-        config = function()
-            require("neodev").setup()
-        end,
+        opts = {},
     },
 }
