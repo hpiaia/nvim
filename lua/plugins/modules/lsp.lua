@@ -90,15 +90,17 @@ return {
         end,
     },
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         dependencies = {
             "jayp0521/mason-null-ls.nvim",
         },
         config = function()
             require("mason-null-ls").setup({
+                automatic_installation = true,
                 ensure_installed = {
                     "stylua",
                     "prettierd",
+                    "gofmt",
                 },
             })
 
@@ -116,7 +118,7 @@ return {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettierd,
                     null_ls.builtins.formatting.prismaFmt,
-                    null_ls.builtins.formatting.rustfmt,
+                    null_ls.builtins.formatting.gofmt,
                 },
                 on_attach = function(current_client, bufnr)
                     if current_client.supports_method("textDocument/formatting") then
