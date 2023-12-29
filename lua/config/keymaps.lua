@@ -18,14 +18,11 @@ map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "enter normal mode" })
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "file explorer" })
 
 -- tab bar
-local opts = { noremap = true, silent = true }
-map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", opts)
-map("n", "<A-.>", "<Cmd>BufferNext<CR>", opts)
-map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", opts)
-map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", opts)
-map("n", "<A-p>", "<Cmd>BufferPin<CR>", opts)
-map("n", "<A-c>", "<Cmd>BufferClose<CR>", opts)
-map("n", "<C-p>", "<Cmd>BufferPick<CR>", opts)
+map("n", "<A-,>", "<cmd>BufferPrevious<cr>", { desc = "buffer previous" })
+map("n", "<A-.>", "<cmd>BufferNext<cr>", { desc = "buffer next" })
+map("n", "<A-p>", "<cmd>BufferPin<cr>", { desc = "buffer pin" })
+map("n", "<A-c>", "<cmd>BufferClose<cr>", { desc = "buffer close" })
+map("n", "<C-p>", "<cmd>BufferPick<cr>", { desc = "buffer pick" })
 
 -- find content
 map("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "find files" })
@@ -42,7 +39,6 @@ map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = 
 map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "trouble document diagnostics" })
 map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { desc = "trouble quickfix" })
 map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { desc = "trouble loclist" })
-map("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { desc = "trouble lsp references" })
 
 -- search and replace
 map("v", "<leader>sr", ":s//gcI<left><left><left><left>", { desc = "search and replace" })
