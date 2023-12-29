@@ -40,6 +40,11 @@ map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "
 map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { desc = "trouble quickfix" })
 map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { desc = "trouble loclist" })
 
+-- floating terminal tools
+map("n", "<leader>tt", "<cmd>lua require('FTerm').toggle()<cr>", { desc = "toggle terminal" })
+map("t", "<leader>tt", "<c-\\><c-n><cmd>lua require('FTerm').toggle()<cr>", { desc = "toggle terminal" })
+map("n", "<leader>gg", "<cmd>lua require('FTerm').run('lazygit')<cr>")
+
 -- search and replace
 map("v", "<leader>sr", ":s//gcI<left><left><left><left>", { desc = "search and replace" })
 map("n", "<leader>sr", ":%s//gcI<left><left><left><left>", { desc = "search and replace" })
