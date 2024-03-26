@@ -31,7 +31,9 @@ return {
                 "markdown",
                 "markdown_inline",
             },
-            highlight = {},
+            highlight = {
+                enable = true,
+            },
             indent = {
                 enable = true,
             },

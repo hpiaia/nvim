@@ -119,6 +119,7 @@ return {
                     null_ls.builtins.formatting.prettierd,
                     null_ls.builtins.formatting.prismaFmt,
                     null_ls.builtins.formatting.gofmt,
+                    null_ls.builtins.formatting.mix,
                 },
                 on_attach = function(current_client, bufnr)
                     if current_client.supports_method("textDocument/formatting") then
