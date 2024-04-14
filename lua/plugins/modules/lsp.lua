@@ -85,6 +85,38 @@ return {
                             },
                         })
                     end,
+
+                    ["intelephense"] = function()
+                        require("lspconfig").intelephense.setup({
+                            capabilities = capabilities,
+                            filetypes = { "php", "blade" },
+                            settings = {
+                                intelephense = {
+                                    filetypes = { "php", "blade" },
+                                    files = {
+                                        associations = { "*.php", "*.blade.php" },
+                                        maxSize = 5000000,
+                                    },
+                                },
+                            },
+                        })
+                    end,
+
+                    ["emmet_ls"] = function()
+                        require("lspconfig").emmet_ls.setup({
+                            capabilities = capabilities,
+                            filetypes = {
+                                "astro",
+                                "blade",
+                                "css",
+                                "html",
+                                "javascriptreact",
+                                "svelte",
+                                "typescriptreact",
+                                "vue",
+                            },
+                        })
+                    end,
                 },
             })
         end,
@@ -101,6 +133,7 @@ return {
                     "stylua",
                     "prettierd",
                     "gofmt",
+                    "pint",
                 },
             })
 
@@ -117,10 +150,8 @@ return {
                 sources = {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettierd,
-                    null_ls.builtins.formatting.prismaFmt,
                     null_ls.builtins.formatting.gofmt,
-                    null_ls.builtins.formatting.mix,
-                    null_ls.builtins.diagnostics.credo,
+                    null_ls.builtins.formatting.pint,
                 },
                 on_attach = function(current_client, bufnr)
                     if current_client.supports_method("textDocument/formatting") then
