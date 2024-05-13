@@ -90,6 +90,10 @@ return {
                         require("lspconfig").intelephense.setup({
                             capabilities = capabilities,
                             filetypes = { "php", "blade" },
+                            init_options = {
+                                globalStoragePath = vim.fn.stdpath("cache") .. "/intelephense/",
+                                licenceKey = "00LPF1UMMOMAP5S",
+                            },
                             settings = {
                                 intelephense = {
                                     filetypes = { "php", "blade" },
