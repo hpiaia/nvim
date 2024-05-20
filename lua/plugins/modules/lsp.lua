@@ -86,6 +86,7 @@ return {
                         })
                     end,
 
+                    -- override intelephense server setup
                     ["intelephense"] = function()
                         require("lspconfig").intelephense.setup({
                             capabilities = capabilities,
@@ -136,8 +137,7 @@ return {
                 ensure_installed = {
                     "stylua",
                     "prettierd",
-                    "gofmt",
-                    "pint",
+                    "eslint_d",
                 },
             })
 
@@ -154,8 +154,7 @@ return {
                 sources = {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettierd,
-                    null_ls.builtins.formatting.gofmt,
-                    null_ls.builtins.formatting.pint,
+                    null_ls.builtins.code_actions.eslint_d,
                 },
                 on_attach = function(current_client, bufnr)
                     if current_client.supports_method("textDocument/formatting") then
