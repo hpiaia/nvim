@@ -16,6 +16,51 @@ return {
 
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+            local on_attach = function(_, bufnr)
+                local group = vim.api.nvim_create_augroup("format_on_save", { clear = false })
+
+                local filter = function(client)
+                    -- use those builtins for formatting instead of null-ls
+                    local builtins = { "rust_analyzer" }
+
+                    return vim.tbl_contains(builtins, client.name) or client.name == "null-ls"
+                end
+
+                vim.keymap.set("n", "<Leader>ff", function()
+                    vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf(), filter = filter })
+                end, { buffer = bufnr, desc = "format" })
+
+                local enable_format_on_save = function()
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        group = group,
+                        buffer = bufnr,
+                        callback = function()
+                            vim.lsp.buf.format({ bufnr = bufnr, filter = filter })
+                        end,
+                    })
+                end
+
+                local disable_format_on_save = function()
+                    vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+                end
+
+                local toggle_format_on_save = function()
+                    local exists = not vim.tbl_isempty(vim.api.nvim_get_autocmds({ group = "format_on_save" }))
+                    if exists then
+                        disable_format_on_save()
+                        print("Format on save disabled")
+                    else
+                        enable_format_on_save()
+                        print("Format on save enabled")
+                    end
+                end
+
+                disable_format_on_save()
+                enable_format_on_save()
+
+                vim.keymap.set("n", "<Leader>fs", toggle_format_on_save, { buffer = bufnr, desc = "toggle format on save" })
+            end
+
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "tsserver",
@@ -33,13 +78,14 @@ return {
                     function(server_name)
                         require("lspconfig")[server_name].setup({
                             capabilities = capabilities,
+                            on_attach = on_attach,
                         })
                     end,
 
-                    -- override lua_ls server setup
                     ["lua_ls"] = function()
                         require("lspconfig").lua_ls.setup({
                             capabilities = capabilities,
+                            on_attach = on_attach,
                             settings = {
                                 Lua = {
                                     diagnostics = {
@@ -50,10 +96,10 @@ return {
                         })
                     end,
 
-                    -- override tsserver server setup
                     ["tsserver"] = function()
                         require("lspconfig").tsserver.setup({
                             capabilities = capabilities,
+                            on_attach = on_attach,
                             init_options = {
                                 preferences = {
                                     disableSuggestions = true,
@@ -62,10 +108,10 @@ return {
                         })
                     end,
 
-                    -- override cssls server setup
                     ["cssls"] = function()
                         require("lspconfig").cssls.setup({
                             capabilities = capabilities,
+                            on_attach = on_attach,
                             settings = {
                                 css = {
                                     validate = false,
@@ -74,10 +120,10 @@ return {
                         })
                     end,
 
-                    -- override jsonls server setup
                     ["jsonls"] = function()
                         require("lspconfig").jsonls.setup({
                             capabilities = capabilities,
+                            on_attach = on_attach,
                             settings = {
                                 json = {
                                     schemas = require("schemastore").json.schemas(),
@@ -86,10 +132,10 @@ return {
                         })
                     end,
 
-                    -- override intelephense server setup
                     ["intelephense"] = function()
                         require("lspconfig").intelephense.setup({
                             capabilities = capabilities,
+                            on_attach = on_attach,
                             filetypes = { "php", "blade" },
                             init_options = {
                                 globalStoragePath = vim.fn.stdpath("cache") .. "/intelephense/",
@@ -110,6 +156,7 @@ return {
                     ["emmet_ls"] = function()
                         require("lspconfig").emmet_ls.setup({
                             capabilities = capabilities,
+                            on_attach = on_attach,
                             filetypes = {
                                 "astro",
                                 "blade",
@@ -136,69 +183,17 @@ return {
                 automatic_installation = true,
                 ensure_installed = {
                     "stylua",
-                    "prettierd",
+                    "prettier",
                 },
             })
 
             local null_ls = require("null-ls")
-            local group = vim.api.nvim_create_augroup("format_on_save", { clear = false })
-
-            local filter = function(client)
-                local builtins = { "rust_analyzer" }
-
-                -- use lsp server for formatting
-                if vim.tbl_contains(builtins, client.name) then
-                    return true
-                end
-
-                --  only use null-ls for formatting instead of lsp server
-                return client.name == "null-ls"
-            end
-
             null_ls.setup({
                 temp_dir = "/tmp",
                 sources = {
                     null_ls.builtins.formatting.stylua,
-                    null_ls.builtins.formatting.prettierd,
-                    null_ls.builtins.formatting.dxfmt,
+                    null_ls.builtins.formatting.prettier,
                 },
-                on_attach = function(current_client, bufnr)
-                    if current_client.supports_method("textDocument/formatting") then
-                        vim.keymap.set("n", "<Leader>f", function()
-                            vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf(), filter = filter })
-                        end, { buffer = bufnr, desc = "format" })
-
-                        local enable_format_on_save = function()
-                            vim.api.nvim_create_autocmd("BufWritePre", {
-                                group = group,
-                                buffer = bufnr,
-                                callback = function()
-                                    vim.lsp.buf.format({ bufnr = bufnr, filter = filter })
-                                end,
-                            })
-                        end
-
-                        local disable_format_on_save = function()
-                            vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
-                        end
-
-                        local toggle_format_on_save = function()
-                            local exists = not vim.tbl_isempty(vim.api.nvim_get_autocmds({ group = "format_on_save" }))
-                            if exists then
-                                disable_format_on_save()
-                                print("Format on save disabled")
-                            else
-                                enable_format_on_save()
-                                print("Format on save enabled")
-                            end
-                        end
-
-                        disable_format_on_save()
-                        enable_format_on_save()
-
-                        vim.keymap.set("n", "<Leader>fs", toggle_format_on_save, { buffer = bufnr, desc = "toggle format on save" })
-                    end
-                end,
             })
         end,
     },
