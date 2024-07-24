@@ -137,7 +137,6 @@ return {
                 ensure_installed = {
                     "stylua",
                     "prettierd",
-                    "eslint_d",
                 },
             })
 
@@ -145,6 +144,13 @@ return {
             local group = vim.api.nvim_create_augroup("format_on_save", { clear = false })
 
             local filter = function(client)
+                local builtins = { "rust_analyzer" }
+
+                -- use lsp server for formatting
+                if vim.tbl_contains(builtins, client.name) then
+                    return true
+                end
+
                 --  only use null-ls for formatting instead of lsp server
                 return client.name == "null-ls"
             end
@@ -154,7 +160,7 @@ return {
                 sources = {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettierd,
-                    null_ls.builtins.code_actions.eslint_d,
+                    null_ls.builtins.formatting.dxfmt,
                 },
                 on_attach = function(current_client, bufnr)
                     if current_client.supports_method("textDocument/formatting") then
@@ -162,15 +168,35 @@ return {
                             vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf(), filter = filter })
                         end, { buffer = bufnr, desc = "format" })
 
-                        -- format on save
-                        vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
-                        vim.api.nvim_create_autocmd("BufWritePre", {
-                            group = group,
-                            buffer = bufnr,
-                            callback = function()
-                                vim.lsp.buf.format({ bufnr = bufnr, filter = filter })
-                            end,
-                        })
+                        local enable_format_on_save = function()
+                            vim.api.nvim_create_autocmd("BufWritePre", {
+                                group = group,
+                                buffer = bufnr,
+                                callback = function()
+                                    vim.lsp.buf.format({ bufnr = bufnr, filter = filter })
+                                end,
+                            })
+                        end
+
+                        local disable_format_on_save = function()
+                            vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+                        end
+
+                        local toggle_format_on_save = function()
+                            local exists = not vim.tbl_isempty(vim.api.nvim_get_autocmds({ group = "format_on_save" }))
+                            if exists then
+                                disable_format_on_save()
+                                print("Format on save disabled")
+                            else
+                                enable_format_on_save()
+                                print("Format on save enabled")
+                            end
+                        end
+
+                        disable_format_on_save()
+                        enable_format_on_save()
+
+                        vim.keymap.set("n", "<Leader>fs", toggle_format_on_save, { buffer = bufnr, desc = "toggle format on save" })
                     end
                 end,
             })
