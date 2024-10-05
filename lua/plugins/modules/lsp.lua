@@ -63,7 +63,7 @@ return {
 
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    "tsserver",
+                    "ts_ls",
                     "html",
                     "cssls",
                     "jsonls",
@@ -96,8 +96,8 @@ return {
                         })
                     end,
 
-                    ["tsserver"] = function()
-                        require("lspconfig").tsserver.setup({
+                    ["ts_ls"] = function()
+                        require("lspconfig").ts_ls.setup({
                             capabilities = capabilities,
                             on_attach = on_attach,
                             init_options = {
@@ -183,7 +183,7 @@ return {
                 automatic_installation = true,
                 ensure_installed = {
                     "stylua",
-                    "prettier",
+                    "prettierd",
                 },
             })
 
@@ -192,7 +192,7 @@ return {
                 temp_dir = "/tmp",
                 sources = {
                     null_ls.builtins.formatting.stylua,
-                    null_ls.builtins.formatting.prettier,
+                    null_ls.builtins.formatting.prettierd,
                 },
             })
         end,
