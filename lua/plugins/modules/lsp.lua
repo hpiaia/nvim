@@ -45,7 +45,7 @@ return {
                 end
 
                 local toggle_format_on_save = function()
-                    local exists = not vim.tbl_isempty(vim.api.nvim_get_autocmds({ group = "format_on_save" }))
+                    local exists = not vim.tbl_isempty(vim.api.nvim_get_autocmds({ group = group }))
                     if exists then
                         disable_format_on_save()
                         print("Format on save disabled")
@@ -193,6 +193,8 @@ return {
                 sources = {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.prettierd,
+                    null_ls.builtins.formatting.pint,
+                    null_ls.builtins.formatting.blade_formatter,
                 },
             })
         end,
